@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, User</h1>
+
+    <hr>
+
+    <!-- View all users -->
+    <h2>View Users</h2>
+    <a href="{% url 'view_users' %}">
+        <button>View Users</button>
+    </a>
+
+    <hr>
+
+    <!-- View user details -->
+    <h2>View User Details</h2>
+    <form method="GET" action="{% url 'user_details' %}">
+        <input type="email" name="email" placeholder="Enter user email" required>
+        <button type="submit">View Details</button>
+    </form>
+
+    <hr>
+
+    <a href="{% url 'logout' %}">
+        <button>Logout</button>
+    </a>
+</body>
+</html>

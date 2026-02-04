@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management System</title>
+    <link rel="stylesheet" href="{% static 'user_app/styling.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>User Management System</h1>
+        <a href = "{% url 'login' %}?role=superadmin">
+        <button class="main-btn">Login as Super Admin</button></a><br>
+        <br>
+        <br>
+        <a href = "{% url 'login' %}?role=user">
+        <button class="main-btn">Login as User</button></a>
+    </div>
+    
+</body>
+</html>

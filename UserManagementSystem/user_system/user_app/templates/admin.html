@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Admin Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, Super Admin</h1>
+
+    <hr>
+
+    <!-- View Users -->
+    <h2>View All Users</h2>
+    <a href="{% url 'view_users' %}">
+        <button>View Users</button>
+    </a>
+
+    <hr>
+
+    <!-- Add User -->
+    <h2>Add User</h2>
+    <form method="POST" action="{% url 'add_user' %}">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <select name="role">
+            <option value="user">User</option>
+            <option value="superadmin">Super Admin</option>
+        </select>
+
+        <button type="submit">Add User</button>
+    </form>
+
+    <hr>
+
+    <!-- Delete User -->
+    <h2>Delete User</h2>
+    <form method="POST" action="{% url 'delete_user' %}">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="User Email" required>
+        <button type="submit">Delete User</button>
+    </form>
+
+    <hr>
+
+    <a href="{% url 'logout' %}">
+        <button>Logout</button>
+    </a>
+</body>
+</html>
