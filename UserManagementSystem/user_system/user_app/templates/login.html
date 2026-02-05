@@ -10,6 +10,16 @@
 
     <div class="login-container">
         <h2>Login</h2>
+        {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p class="message {{ message.tags }}">
+                {{ message }}
+            </p>
+        {% endfor %}
+    </div>
+{% endif %}
+
 
         <form method="post">
             {% csrf_token %}
@@ -34,6 +44,10 @@
                     placeholder="Enter your password"
                     required
                 >
+                <div class="show-password">
+    <span>Show password</span>
+    <input type="checkbox" id="showPassword" onclick="togglePassword()">
+</div>
             </div>
 
             <button type="submit" class="login-btn">
@@ -41,6 +55,11 @@
             </button>
         </form>
     </div>
-
+<script>
+        function togglePassword() {
+            const pwd = document.getElementById("password");
+            pwd.type = pwd.type === "password" ? "text" : "password";
+        }
+    </script>
 </body>
 </html>

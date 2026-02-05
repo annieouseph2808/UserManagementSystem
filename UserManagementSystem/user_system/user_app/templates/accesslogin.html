@@ -10,13 +10,23 @@
 
     <div class="container">
         <h1>User Management System</h1>
-        <a href = "{% url 'login' %}?role=superadmin">
-        <button class="main-btn">Login as Super Admin</button></a><br>
-        <br>
-        <br>
-        <a href = "{% url 'login' %}?role=user">
-        <button class="main-btn">Login as User</button></a>
+
+        <form method="post" action="{% url 'set_role' %}">
+            {% csrf_token %}
+            <button type="submit" name="role" value="superadmin" class="main-btn">
+                Login as Super Admin
+            </button>
+        </form>
+
+        <br><br>
+
+        <form method="post" action="{% url 'set_role' %}">
+            {% csrf_token %}
+            <button type="submit" name="role" value="user" class="main-btn">
+                Login as User
+            </button>
+        </form>
     </div>
-    
+
 </body>
 </html>

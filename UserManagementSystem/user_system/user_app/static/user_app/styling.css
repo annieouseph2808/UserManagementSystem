@@ -101,3 +101,30 @@ h1 {
     background-color: #43a047;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
+.messages {
+    margin-bottom: 15px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.message.error {
+    background-color: #ffe5e5;
+    color: #b30000;
+    border: 1px solid #ffb3b3;
+}
+.show-password {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.show-password span,
+.show-password input {
+    display: inline-flex !important;
+}
+

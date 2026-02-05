@@ -1,0 +1,11 @@
+<h2>Users List</h2>
+
+<ul>
+    {% for user in users %}
+        <li>
+            {{ user.email }} - {{ user.role }}
+        </li>
+    {% endfor %}
+</ul>
+
+{% comment %} <a href="javascript:history.back()">Go Back</a> {% endcomment %}
