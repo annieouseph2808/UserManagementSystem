@@ -7,6 +7,14 @@
 </head>
 <body>
 
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      alert("{{ message }}");
+    </script>
+  {% endfor %}
+{% endif %}
+
 <div class="login-container" style="width: 520px;">
     <h2>Welcome, Super Admin</h2>
 

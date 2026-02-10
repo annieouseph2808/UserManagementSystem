@@ -21,14 +21,12 @@ from . import views
 urlpatterns = [
     path('accesslogin/',views.accesslogin),
     path('login/',views.login,name="login"),
-    #Dashboards
     path('adminscreen/', views.adminscreen, name="adminscreen"),
     path('userscreen/', views.userscreen, name="userscreen"),
     path('users/', views.view_users, name="view_users"),
-    path('user/details/', views.user_details, name="user_details"),
-    path('user/add/', views.add_user, name="add_user"),
-    path('user/remove/', views.remove_user, name="remove_user"),
+    path('users/details/', views.user_details, name="user_details"),
+    path('users/add/', views.add_user, name="add_user"),
+    path('users/remove/', views.remove_user, name="remove_user"),
     path('logout/',views.logout, name="logout"),
     path('set-role/', views.set_role, name='set_role'),
-
 ]

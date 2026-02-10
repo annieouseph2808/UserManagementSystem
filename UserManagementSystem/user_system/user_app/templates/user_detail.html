@@ -1,7 +1,34 @@
-<h2>User Details</h2>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+    <link rel="stylesheet" href="{% static 'user_app/styling.css' %}">
+</head>
+<body>
 
-<p><strong>Email:</strong> {{ user.email }}</p>
-<p><strong>Role:</strong> {{ user.role }}</p>
-<p><strong>Active:</strong> {{ user.is_active }}</p>
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      alert("{{ message|escapejs }}");
+    </script>
+  {% endfor %}
+{% endif %}
 
-{% comment %} <a href="javascript:history.back()">Go Back</a> {% endcomment %}
+<div class="users-container">
+    <h2>User Details</h2>
+
+    <div class="user-item" style="display:block;">
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Role:</strong> {{ user.role }}</p>
+        <p><strong>Active:</strong> {{ user.is_active }}</p>
+    </div>
+
+    <a href="javascript:history.back()" class="back-link">
+        ← Go Back
+    </a>
+</div>
+
+</body>
+</html>

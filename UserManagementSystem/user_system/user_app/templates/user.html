@@ -1,32 +1,52 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>User Dashboard</title>
+    <link rel="stylesheet" href="{% static 'user_app/styling.css' %}">
 </head>
 <body>
-    <h1>Welcome, User</h1>
 
-    <hr>
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      alert("{{ message }}");
+    </script>
+  {% endfor %}
+{% endif %}
 
-    <!-- View all users -->
-    <h2>View Users</h2>
-    <a href="{% url 'view_users' %}">
-        <button>View Users</button>
-    </a>
+<div class="login-container" style="width: 520px;">
+    <h2>Welcome, User</h2>
 
-    <hr>
+    <div class="section">
+        <h3>View All Users</h3>
+        <a href="{% url 'view_users' %}">
+            <button class="login-btn">View Users</button>
+        </a>
+    </div>
 
-    <!-- View user details -->
-    <h2>View User Details</h2>
-    <form method="GET" action="{% url 'user_details' %}">
-        <input type="email" name="email" placeholder="Enter user email" required>
-        <button type="submit">View Details</button>
-    </form>
+    <br>
 
-    <hr>
+    <div class="section">
+        <h3>View User Details</h3>
+        <form method="GET" action="{% url 'user_details' %}">
+            <div class="form-group">
+                <label>User Email</label>
+                <input type="email" name="email" placeholder="Enter user email" required>
+            </div>
+
+            <button type="submit" class="login-btn">
+                View Details
+            </button>
+        </form>
+    </div>
 
     <a href="{% url 'logout' %}">
-        <button>Logout</button>
+        <button class="login-btn" style="background:#555;">
+            Logout
+        </button>
     </a>
+</div>
+
 </body>
 </html>

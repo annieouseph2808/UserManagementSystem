@@ -1,11 +1,35 @@
-<h2>Users List</h2>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+    <link rel="stylesheet" href="{% static 'user_app/styling.css' %}">
+</head>
+<body>
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      alert("{{ message|escapejs }}");
+    </script>
+  {% endfor %}
+{% endif %}
+    <div class="users-container">
+        <h2>Users List</h2>
 
-<ul>
-    {% for user in users %}
-        <li>
-            {{ user.email }} - {{ user.role }}
-        </li>
-    {% endfor %}
-</ul>
+        <ul class="users-list">
+            {% for user in users %}
+                <li class="user-item">
+                    <span>{{ user.email }}</span>
+                    <span class="user-role">{{ user.role }}</span>
+                </li>
+            {% endfor %}
+        </ul>
 
-{% comment %} <a href="javascript:history.back()">Go Back</a> {% endcomment %}
+        <a href="javascript:history.back()" class="back-link">
+            ← Go Back
+        </a>
+    </div>
+
+</body>
+</html>

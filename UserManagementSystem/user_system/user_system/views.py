@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .decorators import role_required
 from .models import User
 from .utils import check_password, hash_password
 from django.contrib import messages
@@ -28,7 +29,7 @@ def login(request):
             messages.error(request,"Invalid password")
             return redirect("login")
         if user.role != role_selected:
-            messages.error(request,"Unauthorized User")
+            messages.error(request,"Roles doesnot match")
             return redirect("login")
         
         request.session["user_id"] = user.id
@@ -37,23 +38,31 @@ def login(request):
             "adminscreen" if user.role == "superadmin" else "userscreen")
         
     return render(request, "login.html", {"role": role_selected})
-
+    
+@role_required(["superadmin", "user"])
 def view_users(request):
     users = User.objects.all()
-    return render(request, "user_list.html",{"users":users})
+    return render(request, "users_list.html",{"users":users})
 
+@role_required(["superadmin", "user"])
 def user_details(request):
     email = request.GET.get("email")
     user = User.objects.get(email=email)
     return render(request, "user_detail.html", {"user": user})
 
+@role_required(["superadmin"])
 def add_user(request):
     if request.method == "POST":
-        User.objects.create(email=request.POST["email"],
-            password=hash_password(request.POST["password"]),
-            role=request.POST["role"])
+        user = User.objects.filter(email=request.POST["email"]).first()
+        if user == None:
+            User.objects.create(email=request.POST["email"],
+                password=hash_password(request.POST["password"]),
+                role=request.POST["role"])
+        else:
+            messages.error(request, "User already exists")
         return redirect("view_users")
-
+    
+@role_required(["superadmin"])
 def remove_user(request):
     if request.method == "POST":
         User.objects.filter(email=request.POST["email"]).delete()
